@@ -1,0 +1,1679 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#191919">
+  <meta name="description" content="La Cabrera Iguazú — parrilla argentina, fuego, abundancia y hospitalidad en Puerto Iguazú.">
+  <meta property="og:title" content="La Cabrera Iguazú | Viví la experiencia">
+  <meta property="og:description" content="Parrilla argentina, fuego y hospitalidad en Puerto Iguazú.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --ink: #191919;
+      --cream: #f7f6df;
+      --red: #a8130c;
+      --deep: #762022;
+      --coral: #c2334a;
+      --rose: #d18379;
+      --white: #fff;
+      --line: rgba(247, 246, 223, .18);
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', Arial, sans-serif;
+      --radius: 4px;
+      --shadow: 0 20px 60px rgba(0, 0, 0, .22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .skip {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+    }
+
+    .skip:focus {
+      left: 18px;
+      top: 18px;
+      z-index: 1000;
+      background: var(--cream);
+      color: var(--ink);
+      padding: 10px 14px;
+    }
+
+    /* ─── Loader premium ─── */
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      background: var(--ink);
+      color: var(--cream);
+      transition: opacity .6s ease, visibility .6s ease;
+    }
+
+    .loader.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-spinner {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      border: 2px solid rgba(247, 246, 223, .18);
+      border-top-color: var(--rose);
+      border-right-color: var(--red);
+      animation: loader-spin 1s cubic-bezier(.6, .05, .3, .95) infinite;
+    }
+
+    .loader-label {
+      font-size: 11px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(247, 246, 223, .62);
+      animation: loader-fade 1.6s ease-in-out infinite;
+    }
+
+    .loader-brand {
+      font-family: var(--serif);
+      font-size: 20px;
+      letter-spacing: .06em;
+      color: var(--cream);
+    }
+
+    @keyframes loader-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes loader-fade {
+      0%, 100% { opacity: .5; }
+      50% { opacity: 1; }
+    }
+
+    /* ─── Header ─── */
+    .site-header {
+      position: absolute;
+      z-index: 20;
+      inset: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px clamp(20px, 5vw, 76px);
+      transition: .3s;
+    }
+
+    .site-header.scrolled {
+      position: fixed;
+      background: rgba(25, 25, 25, .92);
+      backdrop-filter: blur(12px);
+      padding-block: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo {
+      width: 145px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 12px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .nav a {
+      opacity: .8;
+      transition: .25s;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      opacity: 1;
+      color: var(--rose);
+    }
+
+    .reserve-link,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--red);
+      border: 1px solid var(--red);
+      color: var(--white);
+      padding: 13px 19px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 11px;
+      font-weight: 700;
+      transition: .25s;
+    }
+
+    .reserve-link:hover,
+    .button:hover {
+      background: #c32117;
+      border-color: #c32117;
+      transform: translateY(-2px);
+    }
+
+    .lang {
+      display: flex;
+      gap: 8px;
+      margin-left: 10px;
+    }
+
+    .lang button {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      color: rgba(247, 246, 223, .56);
+      font-size: 11px;
+      letter-spacing: .08em;
+      padding: 4px;
+    }
+
+    .lang button.active,
+    .lang button:hover {
+      color: var(--cream);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: transparent;
+      padding: 9px 11px;
+      cursor: pointer;
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .hero {
+      min-height: 94vh;
+      position: relative;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      background: #25120f;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(90deg, rgba(15, 10, 8, .82), rgba(15, 10, 8, .24) 68%),
+        linear-gradient(0deg, rgba(15, 10, 8, .88), transparent 62%),
+        url('https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/fotos/estrutura/03_estrutura.jpg');
+      background-size: cover;
+      background-position: center 42%;
+      transform: scale(1.02);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: 84px clamp(20px, 8vw, 130px);
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--rose);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .25em;
+      font-weight: 700;
+    }
+
+    .eyebrow:before {
+      content: '';
+      width: 38px;
+      height: 1px;
+      background: var(--rose);
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--serif);
+      font-weight: 500;
+      line-height: 1.03;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(54px, 9vw, 96px);
+      max-width: 780px;
+      letter-spacing: -.05em;
+      margin: 23px 0 24px;
+      color: var(--cream);
+    }
+
+    .hero-copy {
+      max-width: 450px;
+      color: rgba(247, 246, 223, .82);
+      font-size: 18px;
+      margin: 0 0 33px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button.ghost {
+      background: transparent;
+      border-color: rgba(247, 246, 223, .55);
+    }
+
+    .button.ghost:hover {
+      background: var(--cream);
+      color: var(--ink);
+      border-color: var(--cream);
+    }
+
+    .scroll-note {
+      position: absolute;
+      right: clamp(20px, 5vw, 76px);
+      bottom: 42px;
+      writing-mode: vertical-rl;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: 10px;
+      color: rgba(247, 246, 223, .65);
+    }
+
+    .scroll-note:after {
+      content: '';
+      display: block;
+      height: 52px;
+      width: 1px;
+      background: var(--rose);
+      margin: 13px auto 0;
+    }
+
+    .section {
+      padding: clamp(76px, 10vw, 150px) clamp(20px, 8vw, 130px);
+      position: relative;
+    }
+
+    .section.light {
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    .section.deep {
+      background: var(--deep);
+    }
+
+    .deep .section-kicker {
+      color: var(--rose);
+    }
+
+    .section-head {
+      max-width: 640px;
+      margin-bottom: 55px;
+    }
+
+    .section-head.center {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .section-kicker {
+      color: var(--red);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .section.light .section-kicker {
+      color: var(--deep);
+    }
+
+    h2 {
+      font-size: clamp(42px, 6vw, 78px);
+      letter-spacing: -.04em;
+    }
+
+    h3 {
+      font-size: clamp(24px, 3vw, 37px);
+    }
+
+    .lead {
+      font-size: 18px;
+      line-height: 1.65;
+      max-width: 560px;
+      color: rgba(25, 25, 25, .68);
+      margin: 22px 0 0;
+    }
+
+    .dark-copy {
+      color: rgba(247, 246, 223, .7);
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: clamp(35px, 7vw, 110px);
+      align-items: center;
+    }
+
+    .story-image {
+      position: relative;
+      min-height: 610px;
+    }
+
+    .story-image img {
+      height: 610px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .image-tag {
+      position: absolute;
+      bottom: 26px;
+      left: 26px;
+      background: var(--cream);
+      color: var(--ink);
+      padding: 13px 16px;
+      font-size: 11px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .story-body .button {
+      margin-top: 30px;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+    }
+
+    .gallery-main {
+      min-height: 620px;
+      position: relative;
+    }
+
+    .gallery-main img,
+    .gallery-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+    }
+
+    .gallery-main,
+    .gallery-tile {
+      overflow: hidden;
+    }
+
+    .gallery-side {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .gallery-tile {
+      min-height: 302px;
+      position: relative;
+    }
+
+    .gallery-main:after,
+    .gallery-tile:after {
+      content: '↗';
+      position: absolute;
+      right: 18px;
+      bottom: 16px;
+      background: rgba(25, 25, 25, .72);
+      border: 1px solid rgba(247, 246, 223, .35);
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      left: 20px;
+      top: 18px;
+      background: var(--red);
+      padding: 7px 10px;
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .gallery-main,
+    .gallery-tile {
+      cursor: zoom-in;
+    }
+
+    .menu-wrap {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: clamp(35px, 7vw, 100px);
+      align-items: start;
+    }
+
+    .menu-intro {
+      position: sticky;
+      top: 110px;
+    }
+
+    .featured-menu {
+      border-top: 1px solid rgba(25, 25, 25, .22);
+    }
+
+    .featured-menu .menu-item {
+      padding: 25px 0;
+    }
+
+    .featured-menu .menu-item h3 {
+      font-size: 20px;
+    }
+
+    .menu-cta {
+      margin-top: 30px;
+    }
+
+    .testimonials {
+      background: var(--deep);
+      color: var(--cream);
+    }
+
+    .testimonials .section-kicker {
+      color: var(--rose);
+    }
+
+    .testimonials .lead {
+      color: rgba(247, 246, 223, .78);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .testimonial-card {
+      background: rgba(247, 246, 223, .06);
+      border: 1px solid rgba(247, 246, 223, .22);
+      padding: 28px;
+      min-height: 235px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background .25s, border-color .25s;
+    }
+
+    .testimonial-card:hover {
+      background: rgba(247, 246, 223, .1);
+      border-color: rgba(209, 131, 121, .55);
+    }
+
+    .testimonial-card i {
+      color: var(--rose);
+      font-size: 22px;
+    }
+
+    .testimonial-card blockquote {
+      font-family: var(--serif);
+      font-size: 21px;
+      line-height: 1.35;
+      margin: 20px 0;
+      color: rgba(247, 246, 223, .9);
+    }
+
+    .testimonial-card cite {
+      font-style: normal;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(247, 246, 223, .6);
+    }
+
+    .menu-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 27px 0 28px;
+    }
+
+    .tab {
+      border: 1px solid rgba(25, 25, 25, .22);
+      background: transparent;
+      padding: 10px 12px;
+      cursor: pointer;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .tab.active,
+    .tab:hover {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .menu-image {
+      height: 210px;
+      margin-bottom: 23px;
+      overflow: hidden;
+    }
+
+    .menu-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .menu-list {
+      border-top: 1px solid rgba(25, 25, 25, .22);
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 21px 0;
+      border-bottom: 1px solid rgba(25, 25, 25, .22);
+    }
+
+    .menu-item h3 {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: .01em;
+    }
+
+    .menu-item p {
+      margin: 5px 0 0;
+      color: rgba(25, 25, 25, .62);
+      font-size: 14px;
+      max-width: 450px;
+    }
+
+    .menu-mark {
+      font-family: var(--serif);
+      color: var(--deep);
+      font-size: 20px;
+      white-space: nowrap;
+    }
+
+    .reservation {
+      background: var(--red);
+      text-align: center;
+      padding-block: clamp(80px, 10vw, 130px);
+    }
+
+    .reservation .section-kicker {
+      color: var(--rose);
+    }
+
+    .reservation h2 {
+      max-width: 740px;
+      margin-inline: auto;
+    }
+
+    .reservation p {
+      max-width: 520px;
+      margin: 23px auto 30px;
+      color: rgba(255, 255, 255, .78);
+    }
+
+    .reservation .button {
+      background: var(--cream);
+      color: var(--ink);
+      border-color: var(--cream);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .contact-card {
+      border: 1px solid rgba(247, 246, 223, .18);
+      padding: 30px;
+      min-height: 220px;
+    }
+
+    .contact-card i {
+      color: var(--rose);
+      font-size: 19px;
+      margin-bottom: 21px;
+    }
+
+    .contact-card h3 {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .contact-card p {
+      margin: 0;
+      color: rgba(247, 246, 223, .7);
+    }
+
+    .contact-card a {
+      text-decoration: underline;
+      text-decoration-color: var(--rose);
+      text-underline-offset: 4px;
+    }
+
+    .site-footer {
+      padding: 48px clamp(20px, 5vw, 76px) 25px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .footer-note {
+      font-size: 13px;
+      color: rgba(247, 246, 223, .56);
+      max-width: 280px;
+      margin-top: 18px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 17px;
+      font-size: 19px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      border-top: 1px solid var(--line);
+      margin-top: 44px;
+      padding-top: 17px;
+      color: rgba(247, 246, 223, .4);
+      font-size: 11px;
+      letter-spacing: .06em;
+    }
+
+    .bottom-reserve {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 30;
+      background: var(--red);
+      padding: 12px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 7, 7, .94);
+      z-index: 50;
+      display: none;
+      place-items: center;
+      padding: 25px;
+    }
+
+    .lightbox.open {
+      display: grid;
+    }
+
+    .lightbox img {
+      max-height: 88vh;
+      max-width: 92vw;
+      object-fit: contain;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      right: 25px;
+      top: 20px;
+      background: transparent;
+      border: 0;
+      color: var(--cream);
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(25, 25, 25, .6);
+      border: 1px solid rgba(247, 246, 223, .35);
+      color: var(--cream);
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background .25s, border-color .25s, transform .25s;
+    }
+
+    .lightbox-nav:hover,
+    .lightbox-nav:focus-visible {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .lightbox-nav.prev {
+      left: 22px;
+    }
+
+    .lightbox-nav.next {
+      right: 22px;
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(247, 246, 223, .7);
+      background: rgba(25, 25, 25, .55);
+      padding: 6px 14px;
+      border: 1px solid rgba(247, 246, 223, .2);
+    }
+
+    .no-js {
+      display: none;
+    }
+
+    /* ─── Animaciones premium scroll ─── */
+    [data-anim] {
+      opacity: 0;
+      will-change: transform, opacity;
+      transition: opacity 1s cubic-bezier(.22, 1, .36, 1),
+                  transform 1s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    [data-anim="fade-up"] {
+      transform: translate3d(0, 40px, 0);
+    }
+
+    [data-anim="fade-down"] {
+      transform: translate3d(0, -30px, 0);
+    }
+
+    [data-anim="fade-left"] {
+      transform: translate3d(-45px, 0, 0);
+    }
+
+    [data-anim="fade-right"] {
+      transform: translate3d(45px, 0, 0);
+    }
+
+    [data-anim="zoom-out"] {
+      transform: scale(1.08);
+    }
+
+    [data-anim="zoom-in"] {
+      transform: scale(.92);
+    }
+
+    [data-anim="reveal-mask"] {
+      clip-path: inset(0 0 100% 0);
+      transform: translate3d(0, 20px, 0);
+    }
+
+    [data-anim].is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+      clip-path: inset(0 0 0 0);
+    }
+
+    [data-anim="zoom-out"].is-visible,
+    [data-anim="zoom-in"].is-visible {
+      transform: scale(1);
+    }
+
+    /* Delays escalonados por grupo */
+    [data-anim-delay="1"] { transition-delay: .1s; }
+    [data-anim-delay="2"] { transition-delay: .2s; }
+    [data-anim-delay="3"] { transition-delay: .3s; }
+    [data-anim-delay="4"] { transition-delay: .4s; }
+    [data-anim-delay="5"] { transition-delay: .5s; }
+    [data-anim-delay="6"] { transition-delay: .6s; }
+
+    /* Micro interacción premium en imágenes de galería */
+    .gallery-main img,
+    .gallery-tile img {
+      transition: transform 1.2s cubic-bezier(.22, 1, .36, 1), filter .6s ease;
+    }
+
+    .gallery-main:hover img,
+    .gallery-tile:hover img {
+      transform: scale(1.06);
+    }
+
+    .story-image img {
+      transition: transform 1.2s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .story-image:hover img {
+      transform: scale(1.04);
+    }
+
+    .menu-image img {
+      transition: transform 1.2s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .menu-image:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Header logo sutil */
+    .logo {
+      transition: opacity .3s, transform .3s;
+    }
+
+    a:hover .logo {
+      opacity: .85;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 800px) {
+      .site-header {
+        padding: 18px 20px;
+      }
+
+      .logo {
+        width: 125px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 15px;
+        right: 15px;
+        background: rgba(25, 25, 25, .98);
+        padding: 18px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        border: 1px solid var(--line);
+      }
+
+      .nav.open {
+        display: flex;
+      }
+
+      .nav a,
+      .nav .reserve-link {
+        padding: 12px 5px;
+      }
+
+      .nav .lang {
+        margin: 4px 0 0;
+      }
+
+      .hero {
+        min-height: 88vh;
+      }
+
+      .hero-inner {
+        padding: 150px 20px 82px;
+      }
+
+      .hero-media {
+        background-position: 58% center;
+      }
+
+      .scroll-note {
+        display: none;
+      }
+
+      .story,
+      .menu-wrap,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .story-image,
+      .story-image img {
+        min-height: 420px;
+        height: 420px;
+      }
+
+      .menu-intro {
+        position: static;
+      }
+
+      .gallery-main {
+        min-height: 440px;
+      }
+
+      .gallery-side {
+        min-height: 440px;
+      }
+
+      .gallery-tile {
+        min-height: 212px;
+      }
+
+      .footer-top,
+      .footer-bottom {
+        flex-direction: column;
+      }
+
+      .bottom-reserve {
+        display: block;
+      }
+
+      .site-footer {
+        padding-bottom: 70px;
+      }
+
+      .section {
+        padding-block: 80px;
+      }
+
+      .experience-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-image {
+        height: 230px;
+      }
+
+      .lightbox-nav {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+      }
+
+      .lightbox-nav.prev {
+        left: 10px;
+      }
+
+      .lightbox-nav.next {
+        right: 10px;
+      }
+
+      .close-lightbox {
+        right: 15px;
+        top: 12px;
+      }
+    }
+
+    @media (min-width: 801px) {
+      .nav .reserve-link {
+        margin-left: 2px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *:before,
+      *:after {
+        transition: none !important;
+        animation: none !important;
+      }
+
+      .loader {
+        transition: none !important;
+      }
+
+      .loader-spinner,
+      .loader-label {
+        animation: none !important;
+      }
+
+      [data-anim] {
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#inicio">Saltar al contenido</a>
+
+  <!-- Loader premium: desaparece quando todo o conteúdo estiver carregado -->
+  <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando La Cabrera Iguazú">
+    <div class="loader-spinner"></div>
+    <span class="loader-brand">La Cabrera</span>
+    <span class="loader-label">Cargando experiencia</span>
+  </div>
+
+  <header class="site-header" id="header">
+    <a href="#inicio" aria-label="La Cabrera Iguazú — inicio">
+      <img class="logo" src="https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/logos/color-negativo.png" alt="La Cabrera Iguazú">
+    </a>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="#" data-i18n="nav.home">Inicio</a>
+      <a href="#" data-i18n="nav.about">Nosotros</a>
+      <a href="#" data-i18n="nav.menu">Menú</a>
+      <a href="#" data-i18n="nav.contact">Contacto</a>
+      <a class="reserve-link track-reserve" href="https://www.wokiapp.com/restaurante/lacabrera-iguazu?enterByLink=true" target="_blank" rel="noopener" data-i18n="nav.reserve">Reservar</a>
+      <span class="lang" aria-label="Idioma">
+        <button class="active" data-lang="es">ES</button>
+        <button data-lang="pt">PT</button>
+        <button data-lang="en">EN</button>
+      </span>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-media" role="img" aria-label="Salón cálido de La Cabrera Iguazú"></div>
+      <div class="hero-inner">
+        <div class="eyebrow" data-i18n="hero.eyebrow" data-anim="fade-down">Parrilla argentina · Puerto Iguazú</div>
+        <h1 data-i18n="hero.title" data-anim="fade-up" data-anim-delay="1">Viví la experiencia La Cabrera.</h1>
+        <p class="hero-copy" data-i18n="hero.copy" data-anim="fade-up" data-anim-delay="2">El fuego, la abundancia y la hospitalidad de una parrilla argentina para compartir sin apuro.</p>
+        <div class="hero-actions" data-anim="fade-up" data-anim-delay="3">
+          <a class="button track-reserve" href="https://www.wokiapp.com/restaurante/lacabrera-iguazu?enterByLink=true" target="_blank" rel="noopener">
+            <span data-i18n="hero.cta">Reservar mesa</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          <a class="button ghost" href="#">
+            <span data-i18n="hero.menu">Ver menú</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="scroll-note" data-i18n="hero.scroll" data-anim="fade-up" data-anim-delay="4">Descubrí la casa</div>
+    </section>
+
+    <section class="section light" id="nosotros">
+      <div class="story">
+        <div class="story-body">
+          <div class="section-kicker" data-i18n="about.kicker" data-anim="fade-up">La casa</div>
+          <h2 data-i18n="about.title" data-anim="fade-up" data-anim-delay="1">Una mesa hecha para quedarse.</h2>
+          <p class="lead" data-i18n="about.copy" data-anim="fade-up" data-anim-delay="2">La Cabrera Iguazú celebra la parrilla porteña desde un lugar cálido y cercano. El fuego marca el ritmo, los cortes llegan para compartir y cada detalle de la mesa invita a disfrutar con tiempo.</p>
+          <a class="button" href="#" data-anim="fade-up" data-anim-delay="3">
+            <span data-i18n="about.cta">Conocé la experiencia</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="story-image" data-anim="fade-left" data-anim-delay="1">
+          <img src="https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/fotos/estrutura/02_estrutura.jpg" alt="Salón de La Cabrera Iguazú con ladrillo, madera y luz cálida" loading="lazy">
+          <span class="image-tag" data-i18n="about.tag">Fuego · mesa · encuentro</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section deep" id="experiencia">
+      <div class="section-head" data-anim="fade-up">
+        <div class="section-kicker" data-i18n="exp.kicker">La experiencia</div>
+        <h2 data-i18n="exp.title">El ritual empieza antes del primer corte.</h2>
+        <p class="lead dark-copy" data-i18n="exp.copy">Luz ámbar, madera, vino y fuego. Un recorrido visual por la atmósfera de La Cabrera Iguazú.</p>
+      </div>
+      <div class="experience-grid">
+        <div class="gallery-main gallery-trigger" data-index="0" data-image="https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/fotos/estrutura/08_estrutura.jpg" data-alt="Fuego encendido en la parrilla" data-anim="zoom-out" data-anim-delay="1">
+          <img src="https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/fotos/estrutura/08_estrutura.jpg" alt="Fuego encendido en la parrilla de La Cabrera" loading="lazy">
+          <span class="gallery-caption" data-i18n="exp.fire">El fuego</span>
+        </div>
+        <div class="gallery-side">
+          <div class="gallery-tile gallery-trigger" data-index="1" data-image="https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/fotos/estrutura/09_estrutura.jpg" data-alt="Botellas de vino en la cava" data-anim="fade-left" data-anim-delay="2">
+            <img src="https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/fotos/estrutura/09_estrutura.jpg" alt="Botellas de vino en la cava" loading="lazy">
+            <span class="gallery-caption" data-i18n="exp.wine">La cava</span>
+          </div>
+          <div class="gallery-tile gallery-trigger" data-index="2" data-image="https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/fotos/estrutura/01_estrutura.jpg" data-alt="Mesa preparada en el salón" data-anim="fade-left" data-anim-delay="3">
+            <img src="https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/fotos/estrutura/01_estrutura.jpg" alt="Mesa preparada en el salón" loading="lazy">
+            <span class="gallery-caption" data-i18n="exp.table">La mesa</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="menu">
+      <div class="menu-wrap">
+        <div class="menu-intro" data-anim="fade-up">
+          <div class="section-kicker" data-i18n="menu.kicker">Menú</div>
+          <h2 data-i18n="menu.title">Algunos favoritos de la casa.</h2>
+          <p class="lead" data-i18n="menu.copy">Una mirada a lo que llega a la mesa: fuego, cortes para compartir y el cuidado de cada detalle.</p>
+          <a class="button menu-cta" href="#">
+            <span data-i18n="menu.cta">Consultar menú completo</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+        <div data-anim="fade-up" data-anim-delay="1">
+          <div class="menu-image">
+            <img src="https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/fotos/pratos/03_prato.jpg" alt="Corte preparado junto al fuego" loading="lazy">
+          </div>
+          <div class="featured-menu" id="menu-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section testimonials" id="depoimentos">
+      <div class="section-head center" data-anim="fade-up">
+        <div class="section-kicker" data-i18n="test.kicker">La experiencia compartida</div>
+        <h2 data-i18n="test.title">Lo que dicen nuestros clientes.</h2>
+        <p class="lead" data-i18n="test.copy">Una sección preparada para reunir reseñas reales y autorizadas de quienes ya vivieron La Cabrera Iguazú.</p>
+      </div>
+      <div class="testimonial-grid">
+        <article class="testimonial-card" data-anim="fade-up" data-anim-delay="1">
+          <i class="fa-solid fa-quote-left"></i>
+          <blockquote data-i18n="test.pending">La evaluación de un cliente aparecerá aquí después de su aprobación.</blockquote>
+          <cite data-i18n="test.pendingLabel">Depoimento pendente de aprovação</cite>
+        </article>
+        <article class="testimonial-card" data-anim="fade-up" data-anim-delay="2">
+          <i class="fa-solid fa-quote-left"></i>
+          <blockquote data-i18n="test.pending">La evaluación de un cliente aparecerá aquí después de su aprobación.</blockquote>
+          <cite data-i18n="test.pendingLabel">Depoimento pendente de aprovação</cite>
+        </article>
+        <article class="testimonial-card" data-anim="fade-up" data-anim-delay="3">
+          <i class="fa-solid fa-quote-left"></i>
+          <blockquote data-i18n="test.pending">La evaluación de un cliente aparecerá aquí después de su aprobación.</blockquote>
+          <cite data-i18n="test.pendingLabel">Depoimento pendente de aprovação</cite>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reservation" id="reservar">
+      <div class="section-kicker" data-i18n="res.kicker" data-anim="fade-down">Tu mesa te espera</div>
+      <h2 data-i18n="res.title" data-anim="fade-up" data-anim-delay="1">Hacé de tu visita a Iguazú un recuerdo para compartir.</h2>
+      <p data-i18n="res.copy" data-anim="fade-up" data-anim-delay="2">Reservá tu mesa a través de Woki y viví la experiencia La Cabrera.</p>
+      <a class="button track-reserve" href="https://www.wokiapp.com/restaurante/lacabrera-iguazu?enterByLink=true" target="_blank" rel="noopener" data-anim="fade-up" data-anim-delay="3">
+        <span data-i18n="res.cta">Reservar en Woki</span>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </section>
+
+    <section class="section" id="contacto">
+      <div class="section-head" data-anim="fade-up">
+        <div class="section-kicker" data-i18n="contact.kicker">Contacto</div>
+        <h2 data-i18n="contact.title">Encontranos en Puerto Iguazú.</h2>
+        <p class="lead dark-copy" data-i18n="contact.copy">Una parrilla argentina en el corazón de la ciudad. Para reservas, utilizá el enlace oficial de Woki.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card" data-anim="fade-up" data-anim-delay="1">
+          <i class="fa-solid fa-location-dot"></i>
+          <h3 data-i18n="contact.addressTitle">Dirección</h3>
+          <p>
+            <a class="track-map" href="https://www.google.com/maps/search/?api=1&query=Av.+Córdoba+148,+Puerto+Iguazú,+Misiones,+Argentina" target="_blank" rel="noopener">Av. Córdoba 148<br>Puerto Iguazú, Misiones</a>
+          </p>
+        </div>
+        <div class="contact-card" data-anim="fade-up" data-anim-delay="2">
+          <i class="fa-brands fa-instagram"></i>
+          <h3>Instagram</h3>
+          <p>
+            <a class="track-instagram" href="https://www.instagram.com/lacabrera_iguazu/" target="_blank" rel="noopener">@lacabrera_iguazu</a><br>
+            <span data-i18n="contact.instagram">Acompanhe a casa, a mesa e o fogo.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div>
+        <img class="logo" src="https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/logos/bn-negativo.png" alt="La Cabrera Iguazú">
+        <p class="footer-note" data-i18n="footer.note">Parrilla argentina, hospitalidade e uma mesa para compartilhar em Puerto Iguazú.</p>
+      </div>
+      <div class="socials">
+        <a class="track-instagram" href="https://www.instagram.com/lacabrera_iguazu/" target="_blank" rel="noopener" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="#inicio" aria-label="Voltar ao início">
+          <i class="fa-solid fa-arrow-up"></i>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 La Cabrera Iguazú</span>
+      <span data-i18n="footer.legal">Experiência, conteúdo e disponibilidade sujeitos à confirmação do restaurante.</span>
+    </div>
+  </footer>
+
+  <a class="bottom-reserve track-reserve" href="https://www.wokiapp.com/restaurante/lacabrera-iguazu?enterByLink=true" target="_blank" rel="noopener">
+    <i class="fa-solid fa-calendar-check"></i>
+    <span data-i18n="nav.reserve">Reservar</span>
+  </a>
+
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Visualização de imagem">
+    <button class="close-lightbox" aria-label="Fechar imagem">×</button>
+    <button class="lightbox-nav prev" aria-label="Imagem anterior"><i class="fa-solid fa-chevron-left"></i></button>
+    <img src="" alt="">
+    <button class="lightbox-nav next" aria-label="Próxima imagem"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="lightbox-counter" aria-live="polite"></div>
+  </div>
+
+  <script>
+    const WOKI = 'https://www.wokiapp.com/restaurante/lacabrera-iguazu?enterByLink=true';
+
+    const copy = {
+      es: {
+        'nav.home': 'Inicio',
+        'nav.about': 'Nosotros',
+        'nav.menu': 'Menú',
+        'nav.contact': 'Contacto',
+        'nav.reserve': 'Reservar',
+        'hero.eyebrow': 'Parrilla argentina · Puerto Iguazú',
+        'hero.title': 'Viví la experiencia La Cabrera.',
+        'hero.copy': 'El fuego, la abundancia y la hospitalidad de una parrilla argentina para compartir sin apuro.',
+        'hero.cta': 'Reservar mesa',
+        'hero.menu': 'Ver menú',
+        'hero.scroll': 'Descubrí la casa',
+        'about.kicker': 'La casa',
+        'about.title': 'Una mesa hecha para quedarse.',
+        'about.copy': 'La Cabrera Iguazú celebra la parrilla porteña desde un lugar cálido y cercano. El fuego marca el ritmo, los cortes llegan para compartir y cada detalle de la mesa invita a disfrutar con tiempo.',
+        'about.cta': 'Conocé la experiencia',
+        'about.tag': 'Fuego · mesa · encuentro',
+        'exp.kicker': 'La experiencia',
+        'exp.title': 'El ritual empieza antes del primer corte.',
+        'exp.copy': 'Luz ámbar, madera, vino y fuego. Un recorrido visual por la atmósfera de La Cabrera Iguazú.',
+        'exp.fire': 'El fuego',
+        'exp.wine': 'La cava',
+        'exp.table': 'La mesa',
+        'menu.kicker': 'Menú',
+        'menu.cta': 'Consultar menú completo',
+        'test.kicker': 'La experiencia compartida',
+        'test.title': 'Lo que dicen nuestros clientes.',
+        'test.copy': 'Una sección preparada para reunir reseñas reales y autorizadas de quienes ya vivieron La Cabrera Iguazú.',
+        'test.pending': 'La evaluación de un cliente aparecerá aquí después de su aprobación.',
+        'test.pendingLabel': 'Depoimento pendente de aprovação',
+        'menu.title': 'Lo que llega a la mesa.',
+        'menu.copy': 'Una selección visual para abrir el apetito. La carta completa y la disponibilidad se confirman en el restaurante.',
+        'menu.tab1': 'Destacados',
+        'menu.tab2': 'Para compartir',
+        'menu.tab3': 'Dulce',
+        'res.kicker': 'Tu mesa te espera',
+        'res.title': 'Hacé de tu visita a Iguazú un recuerdo para compartir.',
+        'res.copy': 'Reservá tu mesa a través de Woki y viví la experiencia La Cabrera.',
+        'res.cta': 'Reservar en Woki',
+        'contact.kicker': 'Contacto',
+        'contact.title': 'Encontranos en Puerto Iguazú.',
+        'contact.copy': 'Una parrilla argentina en el corazón de la ciudad. Para reservas, utilizá el enlace oficial de Woki.',
+        'contact.addressTitle': 'Dirección',
+        'contact.instagram': 'Acompañá la casa, la mesa y el fuego.',
+        'footer.note': 'Parrilla argentina, hospitalidad y una mesa para compartir en Puerto Iguazú.',
+        'footer.legal': 'Experiencia, contenido y disponibilidad sujetos a confirmación del restaurante.'
+      },
+      pt: {
+        'nav.home': 'Início',
+        'nav.about': 'A casa',
+        'nav.menu': 'Cardápio',
+        'nav.contact': 'Contato',
+        'nav.reserve': 'Reservar',
+        'hero.eyebrow': 'Parrilla argentina · Puerto Iguazú',
+        'hero.title': 'Viva a experiência La Cabrera.',
+        'hero.copy': 'Fogo, fartura e hospitalidade de uma parrilla argentina para compartilhar sem pressa.',
+        'hero.cta': 'Reservar mesa',
+        'hero.menu': 'Ver cardápio',
+        'hero.scroll': 'Descubra a casa',
+        'about.kicker': 'A casa',
+        'about.title': 'Uma mesa feita para ficar.',
+        'about.copy': 'A La Cabrera Iguazú celebra a parrilla portenha em um ambiente acolhedor e próximo. O fogo marca o ritmo, os cortes chegam para compartilhar e cada detalhe da mesa convida a aproveitar com tempo.',
+        'about.cta': 'Conheça a experiência',
+        'about.tag': 'Fogo · mesa · encontro',
+        'exp.kicker': 'A experiência',
+        'exp.title': 'O ritual começa antes do primeiro corte.',
+        'exp.copy': 'Luz âmbar, madeira, vinho e fogo. Um percurso visual pela atmosfera da La Cabrera Iguazú.',
+        'exp.fire': 'O fogo',
+        'exp.wine': 'A adega',
+        'exp.table': 'A mesa',
+        'menu.kicker': 'Cardápio',
+        'menu.cta': 'Consultar cardápio completo',
+        'test.kicker': 'A experiência compartilhada',
+        'test.title': 'O que dizem nossos clientes.',
+        'test.copy': 'Uma seção preparada para reunir avaliações reais e autorizadas de quem já viveu a experiência La Cabrera Iguazú.',
+        'test.pending': 'A avaliação de um cliente aparecerá aqui após sua aprovação.',
+        'test.pendingLabel': 'Depoimento pendente de aprovação',
+        'menu.title': 'O que chega à mesa.',
+        'menu.copy': 'Uma seleção visual para abrir o apetite. O cardápio completo e a disponibilidade são confirmados no restaurante.',
+        'menu.tab1': 'Destaques',
+        'menu.tab2': 'Para compartilhar',
+        'menu.tab3': 'Doces',
+        'res.kicker': 'Sua mesa espera por você',
+        'res.title': 'Faça da sua visita a Iguazú uma lembrança para compartilhar.',
+        'res.copy': 'Reserve sua mesa pelo Woki e viva a experiência La Cabrera.',
+        'res.cta': 'Reservar no Woki',
+        'contact.kicker': 'Contato',
+        'contact.title': 'Estamos em Puerto Iguazú.',
+        'contact.copy': 'Uma parrilla argentina no coração da cidade. Para reservas, use o link oficial do Woki.',
+        'contact.addressTitle': 'Endereço',
+        'contact.instagram': 'Acompanhe a casa, a mesa e o fogo.',
+        'footer.note': 'Parrilla argentina, hospitalidade e uma mesa para compartilhar em Puerto Iguazú.',
+        'footer.legal': 'Experiência, conteúdo e disponibilidade sujeitos à confirmação do restaurante.'
+      },
+      en: {
+        'nav.home': 'Home',
+        'nav.about': 'Our house',
+        'nav.menu': 'Menu',
+        'nav.contact': 'Contact',
+        'nav.reserve': 'Reserve',
+        'hero.eyebrow': 'Argentine parrilla · Puerto Iguazú',
+        'hero.title': 'Live the La Cabrera experience.',
+        'hero.copy': 'Fire, abundance and the warm hospitality of an Argentine parrilla, made to be shared.',
+        'hero.cta': 'Book a table',
+        'hero.menu': 'View menu',
+        'hero.scroll': 'Discover the house',
+        'about.kicker': 'Our house',
+        'about.title': 'A table made for lingering.',
+        'about.copy': 'La Cabrera Iguazú celebrates porteño parrilla in a warm, welcoming setting. The fire sets the pace, cuts arrive to share and every detail of the table invites you to take your time.',
+        'about.cta': 'Discover the experience',
+        'about.tag': 'Fire · table · gathering',
+        'exp.kicker': 'The experience',
+        'exp.title': 'The ritual begins before the first cut.',
+        'exp.copy': 'Amber light, wood, wine and fire. A visual journey through the atmosphere of La Cabrera Iguazú.',
+        'exp.fire': 'The fire',
+        'exp.wine': 'The cellar',
+        'exp.table': 'The table',
+        'menu.kicker': 'Menu',
+        'menu.cta': 'View full menu',
+        'test.kicker': 'The shared experience',
+        'test.title': 'What our guests say.',
+        'test.copy': 'A section prepared to feature real, authorized reviews from guests who have experienced La Cabrera Iguazú.',
+        'test.pending': 'A guest review will appear here after approval.',
+        'test.pendingLabel': 'Review pending approval',
+        'menu.title': 'What arrives at the table.',
+        'menu.copy': 'A visual selection to awaken the appetite. The full menu and availability are confirmed at the restaurant.',
+        'menu.tab1': 'Highlights',
+        'menu.tab2': 'For sharing',
+        'menu.tab3': 'Sweet',
+        'res.kicker': 'Your table is waiting',
+        'res.title': 'Make your visit to Iguazú a memory to share.',
+        'res.copy': 'Book your table through Woki and live the La Cabrera experience.',
+        'res.cta': 'Book on Woki',
+        'contact.kicker': 'Contact',
+        'contact.title': 'Find us in Puerto Iguazú.',
+        'contact.copy': 'An Argentine parrilla in the heart of the city. For bookings, use the official Woki link.',
+        'contact.addressTitle': 'Address',
+        'contact.instagram': 'Follow the house, the table and the fire.',
+        'footer.note': 'Argentine parrilla, hospitality and a table to share in Puerto Iguazú.',
+        'footer.legal': 'Experience, content and availability subject to restaurant confirmation.'
+      }
+    };
+
+    const menuData = {
+      es: {
+        destacados: [
+          ['Cortes a la parrilla', 'El fuego como protagonista de la mesa.'],
+          ['Acompañamientos', 'Abundancia para compartir, al centro.'],
+          ['Vinos', 'Una mesa que también se descubre en la copa.']
+        ],
+        mesa: [
+          ['Para compartir', 'Porciones pensadas para disfrutar juntos.'],
+          ['La mesa completa', 'Carne, guarniciones y conversación.'],
+          ['Detalles de la casa', 'El servicio que acompaña cada momento.']
+        ],
+        dulce: [
+          ['Final dulce', 'Un cierre para quedarse un poco más.'],
+          ['Café y sobremesa', 'El último gesto de una experiencia larga.'],
+          ['Algo para recordar', 'Pequeños detalles, gran mesa.']
+        ]
+      },
+      pt: {
+        destacados: [
+          ['Cortes na parrilla', 'O fogo como protagonista da mesa.'],
+          ['Acompanhamentos', 'Fartura para compartilhar ao centro.'],
+          ['Vinhos', 'Uma mesa que também se descobre na taça.']
+        ],
+        mesa: [
+          ['Para compartilhar', 'Porções pensadas para aproveitar juntos.'],
+          ['A mesa completa', 'Carne, acompanhamentos e conversa.'],
+          ['Detalhes da casa', 'O serviço que acompanha cada momento.']
+        ],
+        dulce: [
+          ['Final doce', 'Um encerramento para ficar mais um pouco.'],
+          ['Café e sobremesa', 'O último gesto de uma experiência longa.'],
+          ['Algo para lembrar', 'Pequenos detalhes, uma grande mesa.']
+        ]
+      },
+      en: {
+        destacados: [
+          ['Grilled cuts', 'Fire as the centerpiece of the table.'],
+          ['Sides', 'Generosity made to be shared.'],
+          ['Wines', 'A table that is also discovered by the glass.']
+        ],
+        mesa: [
+          ['For sharing', 'Portions made to enjoy together.'],
+          ['The full table', 'Meat, sides and conversation.'],
+          ['House details', 'Service that accompanies every moment.']
+        ],
+        dulce: [
+          ['A sweet ending', 'A final note worth lingering over.'],
+          ['Coffee and dessert', 'The last gesture of a long experience.'],
+          ['Something to remember', 'Small details, a memorable table.']
+        ]
+      }
+    };
+
+    const pics = {
+      destacados: 'https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/fotos/pratos/03_prato.jpg',
+      mesa: 'https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/fotos/pratos/09_prato.jpg',
+      dulce: 'https://rodrigocintrao.com.br/propostas/la-cabrera/referencias/fotos/pratos/08_prato.jpg'
+    };
+
+    let lang = 'es';
+
+    function renderMenu(tab = 'destacados') {
+      const list = document.querySelector('#menu-list');
+      if (!list) return;
+      list.innerHTML = menuData[lang].destacados.map(x => `
+        <article class="menu-item">
+          <div>
+            <h3>${x[0]}</h3>
+            <p>${x[1]}</p>
+          </div>
+          <span class="menu-mark">✦</span>
+        </article>
+      `).join('');
+    }
+
+    function setLang(next) {
+      lang = next;
+      document.documentElement.lang = next === 'es' ? 'es-AR' : next === 'pt' ? 'pt-BR' : 'en-US';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (copy[next][key]) el.textContent = copy[next][key];
+      });
+      document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('active', b.dataset.lang === next));
+      renderMenu('destacados');
+    }
+
+    setLang('es');
+
+    document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+    document.querySelector('.menu-toggle').addEventListener('click', e => {
+      const nav = document.querySelector('.nav');
+      nav.classList.toggle('open');
+      e.currentTarget.setAttribute('aria-expanded', nav.classList.contains('open'));
+    });
+
+    document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', () => document.querySelector('.nav').classList.remove('open')));
+
+    window.addEventListener('scroll', () => document.querySelector('#header').classList.toggle('scrolled', scrollY > 20), { passive: true });
+
+    document.querySelectorAll('.track-reserve').forEach(a => a.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('lacabrera:reserve-click'));
+    }));
+
+    document.querySelectorAll('.track-map,.track-instagram').forEach(a => a.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('lacabrera:' + (a.classList.contains('track-map') ? 'map' : 'instagram') + '-click'));
+    }));
+
+    /* ─── Lightbox com navegação por setas ─── */
+    const lb = document.querySelector('.lightbox');
+    const lbImg = lb.querySelector('img');
+    const lbCounter = lb.querySelector('.lightbox-counter');
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-trigger'));
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      updateLightbox();
+      lb.classList.add('open');
+      lb.querySelector('.close-lightbox').focus();
+    }
+
+    function updateLightbox() {
+      const item = galleryItems[currentIndex];
+      lbImg.src = item.dataset.image;
+      lbImg.alt = item.dataset.alt;
+      lbCounter.textContent = (currentIndex + 1) + ' / ' + galleryItems.length;
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+      updateLightbox();
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % galleryItems.length;
+      updateLightbox();
+    }
+
+    galleryItems.forEach((item, i) => {
+      item.addEventListener('click', () => openLightbox(i));
+    });
+
+    lb.querySelector('.lightbox-nav.prev').addEventListener('click', showPrev);
+    lb.querySelector('.lightbox-nav.next').addEventListener('click', showNext);
+
+    function closeLb() {
+      lb.classList.remove('open');
+      lbImg.src = '';
+    }
+
+    lb.querySelector('.close-lightbox').addEventListener('click', closeLb);
+    lb.addEventListener('click', e => {
+      if (e.target === lb) closeLb();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLb();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    });
+
+    /* ─── Loader: esconde após carregamento completo ─── */
+    (function initLoader() {
+      const loader = document.getElementById('loader');
+      if (!loader) return;
+
+      function hideLoader() {
+        loader.classList.add('is-hidden');
+        setTimeout(() => {
+          if (loader.parentNode) loader.style.display = 'none';
+        }, 650);
+      }
+
+      if (document.readyState === 'complete') {
+        hideLoader();
+      } else {
+        window.addEventListener('load', hideLoader, { once: true });
+        setTimeout(() => {
+          if (!loader.classList.contains('is-hidden')) hideLoader();
+        }, 12000);
+      }
+    })();
+
+    /* ─── Animaciones de scroll premium ─── */
+    (function initScrollAnimations() {
+      const animEls = document.querySelectorAll('[data-anim]');
+      if (!animEls.length) return;
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) {
+        animEls.forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      animEls.forEach(el => observer.observe(el));
+    })();
+  </script>
+</body>
+</html>
